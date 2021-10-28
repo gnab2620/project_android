@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_favorite">Favorite</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_contactUs">Contact Us</string>
+    <string name="nav_Email">Email</string>
+    <string name="nav_main">Main Menu</string>
+    <string name="nav_support">Support</string>
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="fragment_home_title1">The fragment will belong to an ActionBarActivity and that is where the reference to the actionbar is. </string>
+    <string name="author_name">Thai Bang</string>
+    <string name="post_on">28/10/2021</string>
+</resources>
