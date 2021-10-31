@@ -7,17 +7,20 @@
                     android:id="@+id/nav_home"
                     android:title="@string/nav_home"
                     android:icon="@drawable/ic_home"
+                    android:iconTint="@color/design_default_color_error"
                     />
 
                 <item
                     android:id="@+id/nav_favorite"
                     android:title="@string/nav_favorite"
                     android:icon="@drawable/ic_favorite"
+                    android:iconTint="@color/design_default_color_error"
                     />
                 <item
                     android:id="@+id/nav_categories"
                     android:title="@string/nav_categories"
                     android:icon="@drawable/ic_category"
+                    android:iconTint="@color/design_default_color_error"
                     />
             </menu>
 
@@ -30,11 +33,13 @@
                 android:id="@+id/nav_phone"
                 android:title="@string/nav_contactUs"
                 android:icon="@drawable/ic_phone"
+                android:iconTint="@color/design_default_color_error"
                 />
             <item
                 android:id="@+id/nav_email"
                 android:title="@string/nav_Email"
                 android:icon="@drawable/ic_email"
+                android:iconTint="@color/design_default_color_error"
                 />
         </menu>
     </item>

@@ -45,7 +45,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.Articles
         if (article == null)
             return;
         holder.imgView.setImageResource(article.ArticlesID);
-        holder.txtTitle.setText(article.getAuthor());
+        holder.txtTitle.setText(article.title);
         holder.txtAuthor.setText(article.author);
 
         holder.item_layout.setOnClickListener(new View.OnClickListener() {

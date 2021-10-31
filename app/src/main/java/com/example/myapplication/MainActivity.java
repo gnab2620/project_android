@@ -8,23 +8,23 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.drawable.GradientDrawable;
+import android.app.Application;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.example.myapplication.Adapter.ArticleAdapter;
-import com.example.myapplication.Models.Article;
 import com.example.myapplication.fragment.CategoriesFragment;
 import com.example.myapplication.fragment.FavoriteFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,18 +65,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private List<Article> getListArticles() {
+   /* private List<Article> getListArticles() {
         List<Article> list = new ArrayList<>();
 
-        list.add(new Article(R.mipmap.ic_launcher,"thai bang 1","thai bang","02/01/2000"));
-        list.add(new Article(R.mipmap.ic_launcher,"thai bang 2","thai bang","02/04/2000"));
-        list.add(new Article(R.mipmap.ic_launcher,"thai bang 3","thai bang","02/05/2000"));
-        list.add(new Article(R.mipmap.ic_launcher,"thai bang 4","thai bang","02/06/2000"));
-        list.add(new Article(R.mipmap.ic_launcher,"thai bang 5","thai bang","02/07/2000"));
+        list.add(new Article(R.mipmap.ic_launcher,"Nhiều người dùng Instagram đang bỏ lỡ một tính năng cực kỳ thú vị này!","thai bang 1","02/01/2000"));
+        list.add(new Article(R.mipmap.ic_launcher,"Hố nợ nần sâu thẳm chẳng khác gì Squid Game tại Hàn Quốc","thai bang 2","02/04/2000"));
+        list.add(new Article(R.mipmap.ic_launcher,"Kinh hãi việc bố giết hại cả làng để trả thù cho con trai","thai bang 3","02/05/2000"));
+        list.add(new Article(R.mipmap.ic_launcher,"Quán quân Olympia giàu có bậc nhất","thai bang 4","02/06/2000"));
+        list.add(new Article(R.mipmap.ic_launcher,"tGiai thoại về những chiếc quan tài và những ngôi mộ dưới lòng Hồ Tây","thai bang 5","02/07/2000"));
 
         return  list;
+    }*/
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu,menu);
+
+
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id= item.getItemId();
+        if (id == R.id.action_share)
+        {
+            ApplicationInfo api= getApplicationContext().getApplicationInfo();
+            String apk = api.sourceDir;
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("application/vnd.android.package-archive");
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(apk)));
+            startActivity(Intent.createChooser(intent,"Share"));
+        }
+        return true;
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
