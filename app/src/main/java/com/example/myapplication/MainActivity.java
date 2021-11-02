@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Application;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
@@ -32,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static  final int FRAGMENT_HOME = 0;
     private static  final int FRAGMENT_FAVORITE = 1;
     private static  final int FRAGMENT_CATEGORIES = 2;
-
+    private static  boolean isFirstTime=true;
+    private static  boolean isOnPageCategory = false;
+    private static boolean isOnPageHome = false;
+    private static boolean isOnPageFavorite = false;
 
     private  int _currentFragment = FRAGMENT_HOME;
     private DrawerLayout _drawerLayout;
@@ -60,11 +62,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(new HomeFragment());
+        if (isFirstTime)
+        {
+            replaceFragment(new HomeFragment());
+            isFirstTime = false;
+            isOnPageHome = true;
+        }
+        else
+        {
+           if (isOnPageCategory)
+           {
+               replaceFragment(new CategoriesFragment());
+               _toolbar.setTitle("Categories");
+               _currentFragment=FRAGMENT_CATEGORIES;
+               isOnPageCategory = false;
+           }else
+               if (isOnPageHome)
+               {
+                   replaceFragment(new HomeFragment());
+                   _toolbar.setTitle("Top Stories");
+                   _currentFragment=FRAGMENT_HOME;
+                   isOnPageHome = false;
+               }
+               else if(isOnPageFavorite)
+               {
+                   replaceFragment(new FavoriteFragment());
+                   _toolbar.setTitle("Favorite");
+                   _currentFragment=FRAGMENT_FAVORITE;
+                   isOnPageFavorite = false;
+               }
+        }
+
         //navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
 
     }
+    public void setOnPageCategory(boolean isOnPageCategory)
+    {
+        this.isOnPageCategory= isOnPageCategory;
+    }
+    public void setOnPageHome(boolean isOnPageHome)
+    {
+        this.isOnPageHome= isOnPageHome;
+    }
 
+    public void setOnPageFavorite(boolean isOnPageFavorite)
+    {
+        this.isOnPageFavorite= isOnPageFavorite;
+    }
    /* private List<Article> getListArticles() {
         List<Article> list = new ArrayList<>();
 
@@ -80,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu,menu);
+        getMenuInflater().inflate(R.menu.option_menu_home,menu);
 
 
         return true;
@@ -112,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(new HomeFragment());
                 _toolbar.setTitle("Top Stories");
                 _currentFragment=FRAGMENT_HOME;
+                isOnPageHome=true;
             }
         }else if (id == R.id.nav_favorite)
         {
@@ -120,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             {
                 replaceFragment(new FavoriteFragment());
                 _toolbar.setTitle("Favorite");
+
                 _currentFragment=FRAGMENT_FAVORITE;
+                isOnPageFavorite = true;
             }
         }else if (id == R.id.nav_categories)
         {
@@ -129,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(new CategoriesFragment());
                 _toolbar.setTitle("Categories");
                 _currentFragment=FRAGMENT_CATEGORIES;
+                isOnPageCategory = true;
             }
         }
 

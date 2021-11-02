@@ -11,6 +11,7 @@
     <string name="nav_drawer_close">Close navigation drawer</string>
     <string name="fragment_home_title1">The fragment will belong to an ActionBarActivity and that is where the reference to the actionbar is. </string>
     <string name="author_name">Thai Bang</string>
+    <string name="cate_name"></string>
     <string name="post_on">28/10/2021</string>
     <string name="articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>

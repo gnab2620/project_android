@@ -1,44 +1,55 @@
 package com.example.myapplication.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Adapter.ArticleAdapter;
+import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.Models.Article;
+import com.example.myapplication.Models.Category;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteDetailFragment extends Fragment {
     private RecyclerView row;
     List<Article> list;
+
+    Toolbar toolbar;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_favorite,container,false);
         MainActivity mainActivity = new MainActivity();
         mainActivity.setOnPageFavorite(true);
-        mainActivity.setOnPageHome(false);
-        mainActivity.setOnPageCategory(false);
+        Intent i = getActivity().getIntent();
+        Category category = (Category) i.getSerializableExtra("complexObject");
+
+//        toolbar = view.findViewById(R.id.toolbar);
+        // toolbar.setTitle(category.name);
+
         RecyclerView myrw = (RecyclerView) view.findViewById(R.id.row_favorite);
         ArticleAdapter articleAdapter = new ArticleAdapter(getContext(),list);
         LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getActivity());
         myrw.setLayoutManager(gridLayoutManager);
         myrw.setAdapter(articleAdapter);
-        return view;
+        return  view;
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +59,6 @@ public class FavoriteFragment extends Fragment {
         list.add(new Article(R.drawable.linhlinh,"Kinh hãi việc bố giết hại cả làng để trả thù cho con trai","thai bang 3","02/05/2000"));
         list.add(new Article(R.drawable.linhlinh,"Quán quân Olympia giàu có bậc nhất","thai bang 4","02/06/2000"));
         list.add(new Article(R.drawable.linhlinh,"tGiai thoại về những chiếc quan tài và những ngôi mộ dưới lòng Hồ Tây","thai bang 5","02/07/2000"));
+
     }
 }

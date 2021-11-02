@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Adapter.ArticleAdapter;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.Models.Article;
 import com.example.myapplication.R;
 
@@ -22,16 +23,18 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_detail,container,false);
+        MainActivity mainActivity = new MainActivity();
+        mainActivity.setOnPageHome(true);
         Intent i = getActivity().getIntent();
         Article article = (Article) i.getSerializableExtra("complexObject");
 
 
         TextView ragment_detail_title = (TextView) view.findViewById(R.id.fragment_detail_title);
-        ragment_detail_title.setText(article.title);
+        ragment_detail_title.setText(article.getTitle());
         TextView fragment_author_name = (TextView) view.findViewById(R.id.fragment_author_name);
-        fragment_author_name.setText(article.author);
+        fragment_author_name.setText(article.getAuthor());
         TextView fragment_post_on = (TextView) view.findViewById(R.id.fragment_post_on);
-        fragment_post_on.setText(article.post_on);
+        fragment_post_on.setText(article.getPost_on());
 
         return view;
     }
